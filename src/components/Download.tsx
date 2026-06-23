@@ -29,7 +29,7 @@ export default function Download() {
     { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/typeflow.zip', isLinux: false },
     { icon: Apple, label: 'macOS', id: 'mac', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', isLinux: true },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_android.apk', isLinux: false },
+    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_android-pad.apk', isLinux: false },
     { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
     { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
