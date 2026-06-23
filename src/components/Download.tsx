@@ -6,13 +6,13 @@ export default function Download() {
   const { t } = useI18n();
 
   const platforms = [
-    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500' },
-    { icon: Apple, label: 'macOS', id: 'mac', available: false, color: 'text-slate-600 dark:text-slate-300' },
-    { icon: Terminal, label: 'Linux', id: 'linux', available: false, color: 'text-orange-500' },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: false, color: 'text-emerald-500' },
-    { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300' },
-    { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-emerald-500' },
-    { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300' },
+    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/typeflow.zip' },
+    { icon: Apple, label: 'macOS', id: 'mac', available: false, color: 'text-slate-600 dark:text-slate-300', url: '' },
+    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_amd64.deb' },
+    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: false, color: 'text-emerald-500', url: '' },
+    { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '' },
+    { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-emerald-500', url: '' },
+    { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '' },
   ];
 
   return (
@@ -43,7 +43,7 @@ export default function Download() {
                 </span>
                 {p.available ? (
                   <a
-                    href="https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/typeflow.zip"
+                    href={p.url}
                     className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
                   >
                     <DownloadIcon className="w-3.5 h-3.5" />
