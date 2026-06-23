@@ -43,7 +43,7 @@ export default function Download() {
                 </span>
                 {p.available ? (
                   <a
-                    href="#"
+                    href="https://github.com/skyloveflash1-netizen/type-flow-landing/releases/latest/download/typeflow.zip"
                     className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
                   >
                     <DownloadIcon className="w-3.5 h-3.5" />
