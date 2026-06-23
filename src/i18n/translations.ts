@@ -87,6 +87,8 @@ export interface LandingDict {
   downloadComingSoon: string;
   downloadNote: string;
   downloadPlatformNote: string;
+  linuxInstallTip: string;
+  linuxInstallCmd: string;
 
   // Footer
   footerTagline: string;
@@ -182,8 +184,10 @@ const zhCN: LandingDict = {
   downloadDesc: 'TypeFlow 完全免费，持续更新中。选择你的平台开始练习。',
   downloadBtn: '下载',
   downloadComingSoon: '即将上线',
-  downloadNote: '当前仅 Windows 版本已发布',
-  downloadPlatformNote: 'macOS / Linux / Android Pad / iPad / Android / iOS 正在开发中',
+  downloadNote: 'Windows / Linux (Debian/Ubuntu) 版本已发布',
+  downloadPlatformNote: 'macOS / Android Pad / iPad / Android / iOS 正在开发中',
+  linuxInstallTip: '支持 Ubuntu 22.04+、Debian 12+、Linux Mint 21+ 等 Debian 系桌面系统（x86_64）',
+  linuxInstallCmd: '一键安装命令',
 
   footerTagline: '让打字练习变得简单而高效',
   footerResources: '资源',
@@ -274,8 +278,10 @@ const zhTW: LandingDict = {
   downloadDesc: 'TypeFlow 完全免費，持續更新中。選擇你的平台開始練習。',
   downloadBtn: '下載',
   downloadComingSoon: '即將上線',
-  downloadNote: '目前僅 Windows 版本已發布',
-  downloadPlatformNote: 'macOS / Linux / Android Pad / iPad / Android / iOS 正在開發中',
+  downloadNote: 'Windows / Linux (Debian/Ubuntu) 版本已發佈',
+  downloadPlatformNote: 'macOS / Android Pad / iPad / Android / iOS 正在開發中',
+  linuxInstallTip: '支援 Ubuntu 22.04+、Debian 12+、Linux Mint 21+ 等 Debian 系桌面系統（x86_64）',
+  linuxInstallCmd: '一鍵安裝命令',
 
   footerTagline: '讓打字練習變得簡單而高效',
   footerResources: '資源',
@@ -368,8 +374,10 @@ const en: LandingDict = {
   downloadDesc: 'TypeFlow is completely free and continuously updated. Choose your platform and start practicing.',
   downloadBtn: 'Download',
   downloadComingSoon: 'Coming Soon',
-  downloadNote: 'Currently only Windows version is available',
-  downloadPlatformNote: 'macOS / Linux / Android Pad / iPad / Android / iOS coming soon',
+  downloadNote: 'Windows / Linux (Debian/Ubuntu) versions available',
+  downloadPlatformNote: 'macOS / Android Pad / iPad / Android / iOS coming soon',
+  linuxInstallTip: 'Supports Ubuntu 22.04+, Debian 12+, Linux Mint 21+ and other Debian-based desktop systems (x86_64)',
+  linuxInstallCmd: 'Install command',
 
   footerTagline: 'Making typing practice simple and efficient',
   footerResources: 'Resources',

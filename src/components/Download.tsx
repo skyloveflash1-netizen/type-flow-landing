@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useI18n } from '../i18n/I18nContext';
-import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock } from 'lucide-react';
+import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock, Copy, Check } from 'lucide-react';
 
 export default function Download() {
   const { t } = useI18n();
+  const [copied, setCopied] = useState(false);
+
+  const linuxInstallCmd = 'sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f';
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(linuxInstallCmd);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // fallback
+      const textarea = document.createElement('textarea');
+      textarea.value = linuxInstallCmd;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   const platforms = [
     { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/typeflow.zip' },
@@ -63,6 +84,23 @@ export default function Download() {
         <p className="text-xs text-slate-400 dark:text-slate-500">
           {t.downloadNote} · {t.downloadPlatformNote}
         </p>
+
+        {/* Linux install tip */}
+        <div className="mt-6 inline-block text-left bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/40 rounded-xl px-5 py-3">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">{t.linuxInstallTip}</p>
+          <div className="flex items-center gap-2">
+            <code className="text-xs text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg font-mono select-all">
+              {linuxInstallCmd}
+            </code>
+            <button
+              onClick={handleCopy}
+              className="flex-shrink-0 p-1.5 rounded-lg text-slate-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors"
+              title={t.linuxInstallCmd}
+            >
+              {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
