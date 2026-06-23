@@ -90,12 +90,13 @@ export default function Download() {
           ))}
         </div>
 
-        <p className="text-xs text-slate-400 dark:text-slate-500 mb-2">
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">
           {t.downloadNote} · {t.downloadPlatformNote}
         </p>
-        <p className="text-xs text-amber-500 dark:text-amber-400 font-medium">
-          ⚠ {t.downloadKeyboardNote}
-        </p>
+        <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl">
+          <span className="text-base">⚠️</span>
+          <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">{t.downloadKeyboardNote}</span>
+        </div>
 
         {/* Linux Popover */}
         {linuxOpen && (
