@@ -1,9 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
   const { t } = useI18n();
+  const [rotatingIndex, setRotatingIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const items = t.heroDescRotating || [];
+
+  useEffect(() => {
+    if (items.length === 0) return;
+    const current = items[rotatingIndex];
+
+    const tick = () => {
+      if (!isDeleting) {
+        if (displayText.length < current.length) {
+          setDisplayText(current.slice(0, displayText.length + 1));
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        if (displayText.length > 0) {
+          setDisplayText(displayText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setRotatingIndex((prev) => (prev + 1) % items.length);
+        }
+      }
+    };
+
+    const speed = isDeleting ? 30 : displayText.length === current.length ? 2000 : 50 + Math.random() * 40;
+    const timer = setTimeout(tick, isDeleting && displayText.length === 0 ? 300 : speed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, rotatingIndex, items]);
+
+  // Reset on language change
+  useEffect(() => {
+    setDisplayText('');
+    setIsDeleting(false);
+    setRotatingIndex(0);
+  }, [t.heroDescRotating]);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
@@ -50,9 +89,18 @@ export default function Hero() {
               {t.heroSubtitle}
             </p>
 
-            <p className="animate-slide-up text-base text-slate-500 dark:text-slate-400 leading-relaxed mb-8" style={{ animationDelay: '0.15s' }}>
+            <p className="animate-slide-up text-base text-slate-500 dark:text-slate-400 leading-relaxed mb-3" style={{ animationDelay: '0.15s' }}>
               {t.heroDesc}
             </p>
+
+            {/* Rotating typewriter effect */}
+            <div className="animate-slide-up flex items-center gap-2 mb-8" style={{ animationDelay: '0.15s' }}>
+              <span className="inline-block w-1.5 h-5 bg-brand-500 rounded-full animate-pulse" />
+              <span className="text-base text-slate-600 dark:text-slate-300 leading-relaxed min-h-[1.75rem]">
+                {displayText}
+                <span className="inline-block w-0.5 h-5 bg-brand-400 ml-0.5 align-middle animate-pulse" />
+              </span>
+            </div>
 
             <div className="animate-slide-up flex flex-col sm:flex-row gap-3" style={{ animationDelay: '0.2s' }}>
               <a

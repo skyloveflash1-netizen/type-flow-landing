@@ -10,6 +10,7 @@ export interface LandingDict {
   heroTitleHighlight: string;
   heroSubtitle: string;
   heroDesc: string;
+  heroDescRotating: string[];
   heroCta: string;
   heroVersion: string;
   heroStats1: string;
@@ -94,6 +95,7 @@ export interface LandingDict {
   linuxOr: string;
   linuxCopyBtn: string;
   linuxCopied: string;
+  downloadKeyboardNote: string;
 
   // Footer
   footerTagline: string;
@@ -119,7 +121,15 @@ const zhCN: LandingDict = {
   heroTitle: '让你的打字速度',
   heroTitleHighlight: '提升 3 倍',
   heroSubtitle: '一款受金山打字启发的专业打字练习应用',
-  heroDesc: '从基准键位到流畅盲打，用科学的方法建立肌肉记忆。支持单词、语句、文章、键位四种练习模式，20个渐进关卡，让打字变成一种享受。',
+  heroDesc: '连接真实键盘，从基准键位到流畅盲打，用科学的方法建立肌肉记忆。',
+  heroDescRotating: [
+    '支持单词、语句、文章、键位四种练习模式',
+    '20个渐进关卡，逐级突破，让进步看得见',
+    '实时 WPM 速度显示，准确率精准追踪',
+    '内置精选文章，支持自由导入任意内容',
+    '亮色/暗色主题切换，全天候舒适练习',
+    '连接真实键盘，随时随地进行打字训练',
+  ],
   heroCta: '免费下载',
   heroVersion: 'v1.0.0 · 完全免费',
   heroStats1: '20+',
@@ -193,6 +203,7 @@ const zhCN: LandingDict = {
   downloadPlatformNote: 'macOS / Android Pad / iPad / Android / iOS 正在开发中',
   linuxInstallTip: '支持 Ubuntu 22.04+、Debian 12+、Linux Mint 21+ 等 Debian 系桌面系统（x86_64）',
   linuxInstallCmd: '一键安装命令',
+  downloadKeyboardNote: '所有平台均需外接真实键盘使用',
 
   footerTagline: '让打字练习变得简单而高效',
   footerResources: '资源',
@@ -213,7 +224,15 @@ const zhTW: LandingDict = {
   heroTitle: '讓你的打字速度',
   heroTitleHighlight: '提升 3 倍',
   heroSubtitle: '一款受金山打字啟發的專業打字練習應用',
-  heroDesc: '從基準鍵位到流暢盲打，用科學的方法建立肌肉記憶。支援單詞、語句、文章、鍵位四種練習模式，20個漸進關卡，讓打字變成一種享受。',
+  heroDesc: '連接真實鍵盤，從基準鍵位到流暢盲打，用科學的方法建立肌肉記憶。',
+  heroDescRotating: [
+    '支援單詞、語句、文章、鍵位四種練習模式',
+    '20個漸進關卡，逐級突破，讓進步看得見',
+    '即時 WPM 速度顯示，準確率精準追蹤',
+    '內建精選文章，支援自由匯入任意內容',
+    '亮色/暗色主題切換，全天候舒適練習',
+    '連接真實鍵盤，隨時隨地進行打字訓練',
+  ],
   heroCta: '免費下載',
   heroVersion: 'v1.0.0 · 完全免費',
   heroStats1: '20+',
@@ -287,6 +306,7 @@ const zhTW: LandingDict = {
   downloadPlatformNote: 'macOS / Android Pad / iPad / Android / iOS 正在開發中',
   linuxInstallTip: '支援 Ubuntu 22.04+、Debian 12+、Linux Mint 21+ 等 Debian 系桌面系統（x86_64）',
   linuxInstallCmd: '一鍵安裝命令',
+  downloadKeyboardNote: '所有平台均需外接真實鍵盤使用',
 
   footerTagline: '讓打字練習變得簡單而高效',
   footerResources: '資源',
@@ -309,7 +329,15 @@ const en: LandingDict = {
   heroTitle: 'Boost Your Typing Speed',
   heroTitleHighlight: '3x Faster',
   heroSubtitle: 'A professional typing practice app inspired by classic typing tutors',
-  heroDesc: 'From home row basics to fluent touch typing. Build muscle memory with a scientific approach across four modes: Word, Sentence, Article, and Key Practice with 20 progressive levels.',
+  heroDesc: 'Connect a real keyboard. From home row basics to fluent touch typing. Build muscle memory with a scientific approach.',
+  heroDescRotating: [
+    'Four modes: Word, Sentence, Article, and Key Practice',
+    '20 progressive levels to see your improvement',
+    'Real-time WPM display and accuracy tracking',
+    'Built-in curated articles with free content import',
+    'Light/Dark theme for comfortable practice anytime',
+    'Connect a real keyboard and practice anywhere',
+  ],
   heroCta: 'Download Free',
   heroVersion: 'v1.0.0 · Free',
   heroStats1: '20+',
@@ -383,6 +411,7 @@ const en: LandingDict = {
   downloadPlatformNote: 'macOS / Android Pad / iPad / Android / iOS coming soon',
   linuxInstallTip: 'Supports Ubuntu 22.04+, Debian 12+, Linux Mint 21+ and other Debian-based desktop systems (x86_64)',
   linuxInstallCmd: 'Install command',
+  downloadKeyboardNote: 'A physical keyboard is required on all platforms',
 
   footerTagline: 'Making typing practice simple and efficient',
   footerResources: 'Resources',

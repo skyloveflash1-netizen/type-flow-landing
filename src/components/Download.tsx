@@ -90,8 +90,11 @@ export default function Download() {
           ))}
         </div>
 
-        <p className="text-xs text-slate-400 dark:text-slate-500">
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-2">
           {t.downloadNote} · {t.downloadPlatformNote}
+        </p>
+        <p className="text-xs text-amber-500 dark:text-amber-400 font-medium">
+          ⚠ {t.downloadKeyboardNote}
         </p>
 
         {/* Linux Popover */}
