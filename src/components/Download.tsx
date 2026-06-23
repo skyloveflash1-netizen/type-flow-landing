@@ -8,7 +8,7 @@ export default function Download() {
   const [copied, setCopied] = useState(false);
 
   const linuxDownloadUrl = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_amd64.deb';
-  const linuxInstallCmd = 'sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f';
+  const linuxInstallCmd = 'wget https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_amd64.deb && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f';
 
   const handleCopy = async () => {
     try {

@@ -89,6 +89,11 @@ export interface LandingDict {
   downloadPlatformNote: string;
   linuxInstallTip: string;
   linuxInstallCmd: string;
+  linuxDirectDownload: string;
+  linuxDirectDownloadDesc: string;
+  linuxOr: string;
+  linuxCopyBtn: string;
+  linuxCopied: string;
 
   // Footer
   footerTagline: string;
