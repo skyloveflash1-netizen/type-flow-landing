@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 import { languageNames, Language } from '../i18n/translations';
-import { Sun, Moon, Globe, Keyboard } from 'lucide-react';
+import { Sun, Moon, Globe, Keyboard, Play } from 'lucide-react';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -39,6 +39,13 @@ export default function Navbar({ darkMode, toggleDark }: NavbarProps) {
         <div className="hidden md:flex items-center gap-8">
           <a href="#features" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">{t.navFeatures}</a>
           <a href="#download" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">{t.navDownload}</a>
+          <a
+            href={`${import.meta.env.BASE_URL}app/`}
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-md hover:shadow-brand-500/25"
+          >
+            <Play className="w-3.5 h-3.5" />
+            在线试用
+          </a>
         </div>
 
         <div className="flex items-center gap-2">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 import { screenshotPath } from '../utils/screenshots';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Play } from 'lucide-react';
 
 export default function Hero() {
   const { t, lang } = useI18n();
@@ -110,6 +110,13 @@ export default function Hero() {
               >
                 <ArrowDown className="w-4 h-4" />
                 {t.heroCta}
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}app/`}
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-brand-600 dark:text-brand-400 font-semibold rounded-2xl border border-brand-200 dark:border-brand-500/20 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm"
+              >
+                <Play className="w-4 h-4" />
+                在线试用
               </a>
             </div>
 
