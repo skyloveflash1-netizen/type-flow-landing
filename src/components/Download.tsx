@@ -31,7 +31,7 @@ export default function Download() {
   const platforms = [
     { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${BASE_URL}/typeflow.zip`, size: '2.5 MB', isSpecial: false },
     { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${BASE_URL}/TypeFlow_1.0.0_aarch64.dmg`, size: '~3 MB', isSpecial: false },
-    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: '', isSpecial: true },
+    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: ' ', isSpecial: true },
     { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${BASE_URL}/TypeFlow_1.0.0_android-pad.apk`, size: '~6 MB', isSpecial: false },
     { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
@@ -64,10 +64,7 @@ export default function Download() {
                 <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">
                   {p.label}
                 </span>
-                {p.available && p.size && (
-                  <span className="text-[10px] text-slate-400 dark:text-slate-500 mb-3">{p.size}</span>
-                )}
-                {!p.available && <div className="mb-3" />}
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 mb-3">&nbsp;{p.size}&nbsp;</span>
                 {p.available ? (
                   p.isSpecial ? (
                     <button
@@ -144,7 +141,7 @@ export default function Download() {
                         AppImage（推荐）
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        所有发行版通用，双击即用
+                        所有发行版通用，双击即用 · ~3 MB
                       </div>
                     </div>
                   </a>
@@ -169,7 +166,7 @@ export default function Download() {
                         .deb 安装包
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        Debian/Ubuntu 系
+                        Debian/Ubuntu 系 · ~3 MB
                       </div>
                     </div>
                   </a>
