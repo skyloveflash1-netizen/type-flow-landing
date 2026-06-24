@@ -120,7 +120,7 @@ const zhCN: LandingDict = {
 
   heroTitle: '从零开始，',
   heroTitleHighlight: '学会打字',
-  heroSubtitle: '受金山打字启发，专为入门学习者打造',
+  heroSubtitle: '专为入门学习者打造，循序渐进掌握正确指法',
   heroDesc: '连接真实键盘，从基准键位开始，循序渐进掌握正确指法。',
   heroDescRotating: [
     '适合零基础入门，也适合进阶提高',
@@ -223,7 +223,7 @@ const zhTW: LandingDict = {
   ...zhCN,
   heroTitle: '從零開始，',
   heroTitleHighlight: '學會打字',
-  heroSubtitle: '受金山打字啟發，專為入門學習者打造',
+  heroSubtitle: '專為入門學習者打造，循序漸進掌握正確指法',
   heroDesc: '連接真實鍵盤，從基準鍵位開始，循序漸進掌握正確指法。',
   heroDescRotating: [
     '適合零基礎入門，也適合進階提高',
@@ -328,7 +328,7 @@ const en: LandingDict = {
 
   heroTitle: 'Learn Typing',
   heroTitleHighlight: 'From Scratch',
-  heroSubtitle: 'Inspired by classic typing tutors, built for beginners',
+  heroSubtitle: 'Built for beginners — master proper finger placement step by step',
   heroDesc: 'Connect a real keyboard. Start from the home row and build proper finger habits step by step.',
   heroDescRotating: [
     'Perfect for absolute beginners and improvers',
