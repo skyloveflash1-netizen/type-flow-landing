@@ -10,8 +10,20 @@ import FeatureSettings from './components/FeatureSettings';
 import Download from './components/Download';
 import Footer from './components/Footer';
 
+const APP_STORAGE_KEY = 'typing-practice-v2';
+
 function AppContent() {
   const [darkMode, setDarkMode] = useState(() => {
+    // 优先读取 app 的持久化设置
+    try {
+      const raw = localStorage.getItem(APP_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed?.state?.settings?.theme) {
+          return parsed.state.settings.theme === 'dark';
+        }
+      }
+    } catch { /* ignore */ }
     const saved = localStorage.getItem('landing-theme');
     if (saved !== null) return saved === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -20,6 +32,15 @@ function AppContent() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
     localStorage.setItem('landing-theme', darkMode ? 'dark' : 'light');
+    // 同时写入 app 的存储，让 web 版 app 也能读取
+    try {
+      const raw = localStorage.getItem(APP_STORAGE_KEY);
+      const data = raw ? JSON.parse(raw) : {};
+      if (!data.state) data.state = {};
+      if (!data.state.settings) data.state.settings = {};
+      data.state.settings.theme = darkMode ? 'dark' : 'light';
+      localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(data));
+    } catch { /* ignore */ }
   }, [darkMode]);
 
   const toggleDark = () => setDarkMode((v) => !v);

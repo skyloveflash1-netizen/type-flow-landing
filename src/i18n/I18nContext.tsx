@@ -18,15 +18,40 @@ function detectLanguage(): Language {
   return 'en';
 }
 
+const APP_STORAGE_KEY = 'typing-practice-v2';
+
+function readAppLang(): Language | null {
+  try {
+    const raw = localStorage.getItem(APP_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      const lang = parsed?.state?.settings?.language;
+      if (lang && ['zh-CN', 'zh-TW', 'en'].includes(lang)) return lang;
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
+function writeAppLang(lang: Language) {
+  try {
+    const raw = localStorage.getItem(APP_STORAGE_KEY);
+    const data = raw ? JSON.parse(raw) : {};
+    if (!data.state) data.state = {};
+    if (!data.state.settings) data.state.settings = {};
+    data.state.settings.language = lang;
+    localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(data));
+  } catch { /* ignore */ }
+}
+
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>(() => {
-    const saved = localStorage.getItem('landing-lang');
-    return (saved as Language) || detectLanguage();
+    return readAppLang() || (localStorage.getItem('landing-lang') as Language) || detectLanguage();
   });
 
   const setLang = useCallback((l: Language) => {
     setLangState(l);
     localStorage.setItem('landing-lang', l);
+    writeAppLang(l);
   }, []);
 
   const t = translations[lang];
