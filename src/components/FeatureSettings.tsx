@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { Sun, Moon } from 'lucide-react';
 
 interface FeatureSettingsProps {
@@ -7,7 +8,7 @@ interface FeatureSettingsProps {
 }
 
 export default function FeatureSettings({ darkMode }: FeatureSettingsProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [showLight, setShowLight] = useState(!darkMode);
 
   // Sync with global theme
@@ -22,11 +23,7 @@ export default function FeatureSettings({ darkMode }: FeatureSettingsProps) {
           {/* Screenshot */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
-              {showLight ? (
-                <img src={import.meta.env.BASE_URL + 'screenshots/light/settings.png'} alt="亮色模式设置" className="w-full h-auto animate-fade-in" />
-              ) : (
-                <img src={import.meta.env.BASE_URL + 'screenshots/dark/settings.png'} alt="暗色模式设置" className="w-full h-auto animate-fade-in" />
-              )}
+              <img src={screenshotPath(lang, showLight ? 'light' : 'dark', 'settings.png')} alt="主题设置" className="w-full h-auto animate-fade-in" />
             </div>
             <div className="absolute -top-3 -left-3 w-16 h-16 bg-amber-500/10 rounded-2xl -z-10" />
           </div>

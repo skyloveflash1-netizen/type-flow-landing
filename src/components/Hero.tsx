@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [rotatingIndex, setRotatingIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -56,13 +57,13 @@ export default function Hero() {
           <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-0 w-[68%] max-w-[1050px] animate-scale-in z-0 pointer-events-none select-none" style={{ animationDelay: '0.1s' }}>
             <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
               <img
-                src={import.meta.env.BASE_URL + 'screenshots/light/home.png'}
+                src={screenshotPath(lang, 'light', 'home.png')}
                 alt=""
                 className="w-full h-auto block dark:hidden"
                 loading="eager"
               />
               <img
-                src={import.meta.env.BASE_URL + 'screenshots/dark/home.png'}
+                src={screenshotPath(lang, 'dark', 'home.png')}
                 alt=""
                 className="w-full h-auto hidden dark:block"
                 loading="eager"
@@ -131,13 +132,13 @@ export default function Hero() {
         <div className="lg:hidden mt-10 animate-scale-in relative" style={{ animationDelay: '0.2s' }}>
           <div className="relative rounded-2xl overflow-hidden screenshot-shadow max-w-lg mx-auto">
             <img
-              src={import.meta.env.BASE_URL + 'screenshots/light/home.png'}
+              src={screenshotPath(lang, 'light', 'home.png')}
               alt="TypeFlow 首页"
               className="w-full h-auto block dark:hidden"
               loading="eager"
             />
             <img
-              src={import.meta.env.BASE_URL + 'screenshots/dark/home.png'}
+              src={screenshotPath(lang, 'dark', 'home.png')}
               alt="TypeFlow Home"
               className="w-full h-auto hidden dark:block"
               loading="eager"

@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { Library, Upload, History, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface FeatureArticleSelectProps {
   darkMode: boolean;
 }
 
-const lightImgs = ['article-select.png', 'article-practice.png'];
-const darkImgs = ['article-select.png', 'article-practice.png'];
+const imgs = ['article-select.png', 'article-practice.png'];
 const TOTAL = 2;
 
 export default function FeatureArticleSelect({ darkMode }: FeatureArticleSelectProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [slide, setSlide] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const touchRef = useRef<{ startX: number; startY: number } | null>(null);
@@ -98,21 +98,12 @@ export default function FeatureArticleSelect({ darkMode }: FeatureArticleSelectP
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${slide * 100}%)` }}
                 >
-                  {lightImgs.map((img, i) => (
+                  {imgs.map((img, i) => (
                     <img
                       key={i}
-                      src={import.meta.env.BASE_URL + 'screenshots/light/' + img}
+                      src={screenshotPath(lang, darkMode ? 'dark' : 'light', img)}
                       alt={`文章练习 ${i + 1}`}
-                      className="w-full h-auto shrink-0 block dark:hidden"
-                      draggable={false}
-                    />
-                  ))}
-                  {darkImgs.map((img, i) => (
-                    <img
-                      key={i}
-                      src={import.meta.env.BASE_URL + 'screenshots/dark/' + img}
-                      alt={`文章练习 ${i + 1}`}
-                      className="w-full h-auto shrink-0 hidden dark:block"
+                      className="w-full h-auto shrink-0"
                       draggable={false}
                     />
                   ))}

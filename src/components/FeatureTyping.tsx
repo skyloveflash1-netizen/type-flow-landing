@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { Gauge, Target, Volume2 } from 'lucide-react';
 
 interface FeatureTypingProps {
@@ -7,7 +8,7 @@ interface FeatureTypingProps {
 }
 
 export default function FeatureTyping({ darkMode }: FeatureTypingProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const items = [
     { icon: Gauge, title: t.featTypingPoint1, desc: t.featTypingPoint1Desc },
@@ -23,11 +24,7 @@ export default function FeatureTyping({ darkMode }: FeatureTypingProps) {
           {/* Screenshot */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
-              {darkMode ? (
-                <img src={import.meta.env.BASE_URL + 'screenshots/dark/typing-practice.png'} alt="打字练习界面" className="w-full h-auto" />
-              ) : (
-                <img src={import.meta.env.BASE_URL + 'screenshots/light/typing-practice.png'} alt="打字练习界面" className="w-full h-auto" />
-              )}
+              <img src={screenshotPath(lang, darkMode ? 'dark' : 'light', 'typing-practice.png')} alt="打字练习界面" className="w-full h-auto" />
             </div>
             <div className="absolute -top-3 -right-3 w-16 h-16 bg-brand-500/10 rounded-2xl -z-10" />
           </div>

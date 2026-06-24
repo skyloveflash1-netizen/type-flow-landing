@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { Type, FileText, BookOpen, Keyboard } from 'lucide-react';
 
 interface FeatureModeProps {
@@ -7,7 +8,7 @@ interface FeatureModeProps {
 }
 
 export default function FeatureMode({ darkMode }: FeatureModeProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const modes = [
     { icon: Type, color: 'emerald', title: t.featModeItem1, desc: t.featModeItem1Desc },
@@ -40,11 +41,7 @@ export default function FeatureMode({ darkMode }: FeatureModeProps) {
           {/* Screenshot */}
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
-              {darkMode ? (
-                <img src={import.meta.env.BASE_URL + 'screenshots/dark/mode-selection.png'} alt="练习模式选择" className="w-full h-auto" />
-              ) : (
-                <img src={import.meta.env.BASE_URL + 'screenshots/light/mode-selection.png'} alt="练习模式选择" className="w-full h-auto" />
-              )}
+              <img src={screenshotPath(lang, darkMode ? 'dark' : 'light', 'mode-selection.png')} alt="练习模式选择" className="w-full h-auto" />
             </div>
             <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-purple-500/10 rounded-2xl -z-10" />
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { Library, Upload, History } from 'lucide-react';
 
 interface FeatureArticlesProps {
@@ -7,7 +8,7 @@ interface FeatureArticlesProps {
 }
 
 export default function FeatureArticles({ darkMode }: FeatureArticlesProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const items = [
     { icon: Library, title: t.featArticlesPoint1, desc: t.featArticlesPoint1Desc },
@@ -47,11 +48,7 @@ export default function FeatureArticles({ darkMode }: FeatureArticlesProps) {
           {/* Screenshot */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
-              {darkMode ? (
-                <img src={import.meta.env.BASE_URL + 'screenshots/dark/article-select.png'} alt="文章练习" className="w-full h-auto" />
-              ) : (
-                <img src={import.meta.env.BASE_URL + 'screenshots/light/article-select.png'} alt="文章练习" className="w-full h-auto" />
-              )}
+              <img src={screenshotPath(lang, darkMode ? 'dark' : 'light', 'article-select.png')} alt="文章练习" className="w-full h-auto" />
             </div>
             <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-purple-500/10 rounded-2xl -z-10" />
           </div>

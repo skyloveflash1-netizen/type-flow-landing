@@ -28,7 +28,7 @@ const darkScreenshots = [
 ];
 
 export default function Screenshots({ darkMode }: ScreenshotsProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [activeIndex, setActiveIndex] = useState(0);
   const [tab, setTab] = useState<'light' | 'dark'>('light');
 
@@ -82,7 +82,7 @@ export default function Screenshots({ darkMode }: ScreenshotsProps) {
           {/* Main image */}
           <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
             <img
-              src={`/screenshots/${tab}/${screenshots[activeIndex]}`}
+              src={`${import.meta.env.BASE_URL}screenshots/${lang === 'zh-CN' ? 'cn' : lang === 'zh-TW' ? 'tw' : 'en'}/${tab}/${screenshots[activeIndex]}`}
               alt={`${t.screenshotsTitle} ${activeIndex + 1}`}
               className="w-full h-auto"
               loading="lazy"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
+import { screenshotPath } from '../utils/screenshots';
 import { CheckCircle2 } from 'lucide-react';
 
 interface FeatureKeyPracticeProps {
@@ -7,7 +8,7 @@ interface FeatureKeyPracticeProps {
 }
 
 export default function FeatureKeyPractice({ darkMode }: FeatureKeyPracticeProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   const points = [
     { title: t.featKeyPoint1, desc: t.featKeyPoint1Desc },
@@ -46,11 +47,7 @@ export default function FeatureKeyPractice({ darkMode }: FeatureKeyPracticeProps
           {/* Screenshot */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden screenshot-shadow">
-              {darkMode ? (
-                <img src={import.meta.env.BASE_URL + 'screenshots/dark/level-select.png'} alt="键位练习关卡" className="w-full h-auto" />
-              ) : (
-                <img src={import.meta.env.BASE_URL + 'screenshots/light/level-select.png'} alt="键位练习关卡" className="w-full h-auto" />
-              )}
+              <img src={screenshotPath(lang, darkMode ? 'dark' : 'light', 'level-select.png')} alt="键位练习关卡" className="w-full h-auto" />
             </div>
             <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-orange-500/10 rounded-2xl -z-10" />
           </div>
