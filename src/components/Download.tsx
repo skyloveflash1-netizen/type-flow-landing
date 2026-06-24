@@ -137,11 +137,14 @@ export default function Download() {
                       <DownloadIcon className="w-4 h-4 text-brand-500" />
                     </div>
                     <div className="text-left flex-1 min-w-0">
-                      <div className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                        AppImage（推荐）
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                          AppImage（推荐）
+                        </span>
+                        <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-400 rounded">77.8 MB</span>
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        所有发行版通用，双击即用 · 77.8 MB
+                        所有发行版通用，双击即用
                       </div>
                     </div>
                   </a>
@@ -162,11 +165,14 @@ export default function Download() {
                       <DownloadIcon className="w-4 h-4 text-orange-500" />
                     </div>
                     <div className="text-left flex-1 min-w-0">
-                      <div className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                        .deb 安装包
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                          .deb 安装包
+                        </span>
+                        <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-400 rounded">2.88 MB</span>
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        Debian/Ubuntu 系 · 2.88 MB
+                        Debian/Ubuntu 系
                       </div>
                     </div>
                   </a>
