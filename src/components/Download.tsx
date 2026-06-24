@@ -29,10 +29,10 @@ export default function Download() {
   };
 
   const platforms = [
-    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${BASE_URL}/typeflow.zip`, size: '2.5 MB', isSpecial: false },
-    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${BASE_URL}/TypeFlow_1.0.0_aarch64.dmg`, size: '~3 MB', isSpecial: false },
+    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${BASE_URL}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
+    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${BASE_URL}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: ' ', isSpecial: true },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${BASE_URL}/TypeFlow_1.0.0_android-pad.apk`, size: '~6 MB', isSpecial: false },
+    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${BASE_URL}/TypeFlow_1.0.0_android-pad.apk`, size: '35.8 MB', isSpecial: false },
     { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
@@ -141,7 +141,7 @@ export default function Download() {
                         AppImage（推荐）
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        所有发行版通用，双击即用 · ~3 MB
+                        所有发行版通用，双击即用 · 77.8 MB
                       </div>
                     </div>
                   </a>
@@ -166,7 +166,7 @@ export default function Download() {
                         .deb 安装包
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        Debian/Ubuntu 系 · ~3 MB
+                        Debian/Ubuntu 系 · 2.88 MB
                       </div>
                     </div>
                   </a>
