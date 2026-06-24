@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X } from 'lucide-react';
 
+const BASE_URL = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
+
+const linuxAppImageUrl = `${BASE_URL}/TypeFlow_1.0.0_amd64.AppImage`;
+const linuxDebUrl = `${BASE_URL}/TypeFlow_1.0.0_amd64.deb`;
+const linuxInstallCmd = `wget ${BASE_URL}/TypeFlow_1.0.0_amd64.deb && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f`;
+
 export default function Download() {
   const { t } = useI18n();
   const [linuxOpen, setLinuxOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  const linuxDownloadUrl = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_amd64.deb';
-  const linuxInstallCmd = 'wget https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_amd64.deb && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f';
 
   const handleCopy = async () => {
     try {
@@ -26,13 +29,13 @@ export default function Download() {
   };
 
   const platforms = [
-    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/typeflow.zip', isLinux: false },
-    { icon: Apple, label: 'macOS', id: 'mac', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
-    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', isLinux: true },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0/TypeFlow_1.0.0_android-pad.apk', isLinux: false },
-    { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
-    { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
-    { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', isLinux: false },
+    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${BASE_URL}/typeflow.zip`, size: '2.5 MB', isSpecial: false },
+    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${BASE_URL}/TypeFlow_1.0.0_aarch64.dmg`, size: '~3 MB', isSpecial: false },
+    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: '', isSpecial: true },
+    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${BASE_URL}/TypeFlow_1.0.0_android-pad.apk`, size: '~6 MB', isSpecial: false },
+    { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
+    { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
+    { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
   ];
 
   return (
@@ -58,11 +61,15 @@ export default function Download() {
             >
               <div className="p-5 flex flex-col items-center text-center">
                 <p.icon className={`w-8 h-8 mb-3 ${p.color}`} />
-                <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-3">
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">
                   {p.label}
                 </span>
+                {p.available && p.size && (
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 mb-3">{p.size}</span>
+                )}
+                {!p.available && <div className="mb-3" />}
                 {p.available ? (
-                  p.isLinux ? (
+                  p.isSpecial ? (
                     <button
                       onClick={() => setLinuxOpen(true)}
                       className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
@@ -103,7 +110,7 @@ export default function Download() {
           <>
             <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" onClick={() => setLinuxOpen(false)} />
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200/60 dark:border-slate-700/40 w-full max-w-sm overflow-hidden animate-in fade-in zoom-in">
+              <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200/60 dark:border-slate-700/40 w-full max-w-sm overflow-hidden">
                 {/* Header */}
                 <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-700/50">
                   <div className="flex items-center gap-2.5">
@@ -120,25 +127,24 @@ export default function Download() {
 
                 {/* Body */}
                 <div className="p-5 space-y-4">
-                  {/* System info */}
                   <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                     {t.linuxInstallTip}
                   </p>
 
-                  {/* Option 1: Direct download */}
+                  {/* AppImage - recommended */}
                   <a
-                    href={linuxDownloadUrl}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 hover:bg-brand-50 dark:hover:bg-brand-500/10 border border-slate-100 dark:border-slate-700/30 hover:border-brand-200 dark:hover:border-brand-500/20 transition-all group"
+                    href={linuxAppImageUrl}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-brand-50 dark:bg-brand-500/10 hover:bg-brand-100 dark:hover:bg-brand-500/20 border border-brand-200 dark:border-brand-500/20 transition-all group"
                   >
-                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center">
-                      <DownloadIcon className="w-4 h-4 text-orange-500" />
+                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center">
+                      <DownloadIcon className="w-4 h-4 text-brand-500" />
                     </div>
                     <div className="text-left flex-1 min-w-0">
                       <div className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                        直接下载 .deb 包
+                        AppImage（推荐）
                       </div>
                       <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                        下载后手动安装
+                        所有发行版通用，双击即用
                       </div>
                     </div>
                   </a>
@@ -150,7 +156,32 @@ export default function Download() {
                     <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700/50" />
                   </div>
 
-                  {/* Option 2: Copy command */}
+                  {/* deb */}
+                  <a
+                    href={linuxDebUrl}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 hover:bg-orange-50 dark:hover:bg-orange-500/10 border border-slate-100 dark:border-slate-700/30 hover:border-orange-200 dark:hover:border-orange-500/20 transition-all group"
+                  >
+                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center">
+                      <DownloadIcon className="w-4 h-4 text-orange-500" />
+                    </div>
+                    <div className="text-left flex-1 min-w-0">
+                      <div className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                        .deb 安装包
+                      </div>
+                      <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                        Debian/Ubuntu 系
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* Divider */}
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700/50" />
+                    <span className="text-xs text-slate-400 dark:text-slate-500">或</span>
+                    <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700/50" />
+                  </div>
+
+                  {/* Copy command */}
                   <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 border border-slate-100 dark:border-slate-700/30">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-medium text-slate-500 dark:text-slate-400">一键安装命令</span>
