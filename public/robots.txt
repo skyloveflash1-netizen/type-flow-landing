@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://skyloveflash1-netizen.github.io/type-flow-landing/sitemap.xml
