@@ -44,7 +44,7 @@ export default function Navbar({ darkMode, toggleDark }: NavbarProps) {
             className="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-md hover:shadow-brand-500/25"
           >
             <Play className="w-3.5 h-3.5" />
-            在线试用
+            {t.tryOnline}
           </a>
         </div>
 

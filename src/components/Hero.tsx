@@ -116,7 +116,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-brand-600 dark:text-brand-400 font-semibold rounded-2xl border border-brand-200 dark:border-brand-500/20 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm"
               >
                 <Play className="w-4 h-4" />
-                在线试用
+                {t.tryOnline}
               </a>
             </div>
 

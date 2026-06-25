@@ -12,6 +12,7 @@ export interface LandingDict {
   heroDesc: string;
   heroDescRotating: string[];
   heroCta: string;
+  tryOnline: string;
   heroVersion: string;
   heroStats1: string;
   heroStats1Label: string;
@@ -131,6 +132,7 @@ const zhCN: LandingDict = {
     '给孩子一个简单纯粹的练习环境',
   ],
   heroCta: '免费下载',
+  tryOnline: '在线试用',
   heroVersion: 'v1.0.0 · 完全免费',
   heroStats1: '20+',
   heroStats1Label: '键位关卡',
@@ -234,6 +236,7 @@ const zhTW: LandingDict = {
     '給孩子一個簡單純粹的練習環境',
   ],
   heroCta: '免費下載',
+  tryOnline: '線上試用',
   heroVersion: 'v1.0.0 · 完全免費',
   heroStats1: '20+',
   heroStats1Label: '鍵位關卡',
@@ -339,6 +342,7 @@ const en: LandingDict = {
     'A clean, distraction-free environment for kids',
   ],
   heroCta: 'Download Free',
+  tryOnline: 'Try Online',
   heroVersion: 'v1.0.0 · Free',
   heroStats1: '20+',
   heroStats1Label: 'Key Levels',
