@@ -43,8 +43,8 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-slate-800 dark:text-white mb-3">{t.footerCredits}</h4>
             <div className="space-y-2 text-xs text-slate-400 dark:text-slate-500 leading-relaxed">
-              <p>特别鸣谢 崔尧枫 (Felix)</p>
-              <p>技术支持 崔佳辉 (Kevin)</p>
+              <p>{t.footerCredit1}</p>
+              <p>{t.footerCredit2}</p>
             </div>
           </div>
         </div>

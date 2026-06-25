@@ -104,6 +104,8 @@ export interface LandingDict {
   footerConnect: string;
   footerLegal: string;
   footerCredits: string;
+  footerCredit1: string;
+  footerCredit2: string;
   footerCopyright: string;
 
   // Theme
@@ -210,6 +212,8 @@ const zhCN: LandingDict = {
   footerResources: '资源',
   footerConnect: '联系我们',
   footerCredits: '特别鸣谢',
+  footerCredit1: '特别鸣谢 崔尧枫',
+  footerCredit2: '技术支持 崔佳辉',
   footerCopyright: '© 2026 TypeFlow',
 
   switchLight: '切换亮色模式',
@@ -312,6 +316,8 @@ const zhTW: LandingDict = {
   footerResources: '資源',
   footerConnect: '聯絡我們',
   footerCredits: '特別鳴謝',
+  footerCredit1: '特別鳴謝 崔堯楓',
+  footerCredit2: '技術支持 崔佳輝',
   footerCopyright: '© 2026 TypeFlow',
 
   switchLight: '切換亮色模式',
@@ -416,6 +422,8 @@ const en: LandingDict = {
   footerResources: 'Resources',
   footerConnect: 'Connect',
   footerCredits: 'Credits',
+  footerCredit1: 'Special thanks to Felix',
+  footerCredit2: 'Tech support by Kevin',
   footerCopyright: '© 2026 TypeFlow',
 
   switchLight: 'Switch to Light',
