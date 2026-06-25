@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta (Bilingual) -->
+    <!-- SEO Meta -->
     <title>TypeFlow - Learn Typing From Scratch | 从零开始学打字</title>
     <meta name="description" content="A free cross-platform typing practice app for beginners. 20 progressive levels, real keyboard required. | TypeFlow 是一款免费跨平台打字练习应用，支持 Windows、macOS、Linux、Android。适合零基础入门和进阶提高。" />
     <meta name="keywords" content="typing practice, learn typing, touch typing, typing tutor, keyboard practice, 打字练习, 打字学习, 指法练习, 键位练习, 盲打, 儿童打字" />
@@ -36,5 +36,32 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Dynamic title based on saved language -->
+    <script>
+      (function() {
+        const titles = {
+          'zh-CN': 'TypeFlow - 从零开始学打字 | 跨平台打字练习应用',
+          'zh-TW': 'TypeFlow - 從零開始學打字 | 跨平台打字練習應用',
+          'en': 'TypeFlow - Learn Typing From Scratch | Free Typing Practice App',
+        };
+        try {
+          // 从 localStorage 读取 app 存储的语言
+          const raw = localStorage.getItem('typing-practice-v2');
+          if (raw) {
+            const data = JSON.parse(raw);
+            const lang = data?.state?.settings?.language;
+            if (lang && titles[lang]) {
+              document.title = titles[lang];
+            }
+          } else {
+            // fallback: 从 landing 自己的存储读
+            const lang = localStorage.getItem('landing-lang');
+            if (lang && titles[lang]) {
+              document.title = titles[lang];
+            }
+          }
+        } catch(e) { /* ignore */ }
+      })();
+    </script>
   </body>
 </html>
