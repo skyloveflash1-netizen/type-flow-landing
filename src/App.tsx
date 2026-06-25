@@ -14,13 +14,13 @@ const APP_STORAGE_KEY = 'typing-practice-v2';
 
 function AppContent() {
   const [darkMode, setDarkMode] = useState(() => {
-    // 优先读取 app 的持久化设置
+    // 优先读取 app 的持久化设置（app 用 settings.darkMode boolean）
     try {
       const raw = localStorage.getItem(APP_STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed?.state?.settings?.theme) {
-          return parsed.state.settings.theme === 'dark';
+        if (parsed?.state?.settings?.darkMode !== undefined) {
+          return parsed.state.settings.darkMode;
         }
       }
     } catch { /* ignore */ }
@@ -38,7 +38,7 @@ function AppContent() {
       const data = raw ? JSON.parse(raw) : {};
       if (!data.state) data.state = {};
       if (!data.state.settings) data.state.settings = {};
-      data.state.settings.theme = darkMode ? 'dark' : 'light';
+      data.state.settings.darkMode = darkMode;
       localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(data));
     } catch { /* ignore */ }
   }, [darkMode]);
