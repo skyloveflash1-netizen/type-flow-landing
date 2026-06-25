@@ -36,7 +36,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Dynamic title based on saved language -->
+    <!-- Dynamic title based on saved language or browser preference -->
     <script>
       (function() {
         const titles = {
@@ -44,22 +44,31 @@
           'zh-TW': 'TypeFlow - 從零開始學打字 | 跨平台打字練習應用',
           'en': 'TypeFlow - Learn Typing From Scratch | Free Typing Practice App',
         };
+
+        function getBrowserLang() {
+          const lang = navigator.language || '';
+          if (lang.startsWith('zh-TW') || lang.startsWith('zh-HK')) return 'zh-TW';
+          if (lang.startsWith('zh')) return 'zh-CN';
+          return 'en';
+        }
+
+        function setTitle(lang) {
+          if (titles[lang]) document.title = titles[lang];
+        }
+
         try {
-          // 从 localStorage 读取 app 存储的语言
+          // 1. 优先读取 app 存储的语言
           const raw = localStorage.getItem('typing-practice-v2');
           if (raw) {
             const data = JSON.parse(raw);
             const lang = data?.state?.settings?.language;
-            if (lang && titles[lang]) {
-              document.title = titles[lang];
-            }
-          } else {
-            // fallback: 从 landing 自己的存储读
-            const lang = localStorage.getItem('landing-lang');
-            if (lang && titles[lang]) {
-              document.title = titles[lang];
-            }
+            if (lang && titles[lang]) return setTitle(lang);
           }
+          // 2. 读取 landing 自己的存储
+          const lang = localStorage.getItem('landing-lang');
+          if (lang && titles[lang]) return setTitle(lang);
+          // 3. 根据浏览器环境自动判断
+          setTitle(getBrowserLang());
         } catch(e) { /* ignore */ }
       })();
     </script>
