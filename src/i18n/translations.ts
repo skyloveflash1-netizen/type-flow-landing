@@ -103,8 +103,7 @@ export interface LandingDict {
   footerResources: string;
   footerConnect: string;
   footerLegal: string;
-  footerPrivacy: string;
-  footerTerms: string;
+  footerCredits: string;
   footerCopyright: string;
 
   // Theme
@@ -210,9 +209,7 @@ const zhCN: LandingDict = {
   footerTagline: '让打字练习变得简单而高效',
   footerResources: '资源',
   footerConnect: '联系我们',
-  footerLegal: '法律',
-  footerPrivacy: '隐私政策',
-  footerTerms: '服务条款',
+  footerCredits: '特别鸣谢',
   footerCopyright: '© 2026 TypeFlow',
 
   switchLight: '切换亮色模式',
@@ -314,9 +311,7 @@ const zhTW: LandingDict = {
   footerTagline: '讓打字練習變得簡單而高效',
   footerResources: '資源',
   footerConnect: '聯絡我們',
-  footerLegal: '法律',
-  footerPrivacy: '隱私政策',
-  footerTerms: '服務條款',
+  footerCredits: '特別鳴謝',
   footerCopyright: '© 2026 TypeFlow',
 
   switchLight: '切換亮色模式',
@@ -420,9 +415,7 @@ const en: LandingDict = {
   footerTagline: 'Making typing practice simple and efficient',
   footerResources: 'Resources',
   footerConnect: 'Connect',
-  footerLegal: 'Legal',
-  footerPrivacy: 'Privacy Policy',
-  footerTerms: 'Terms of Service',
+  footerCredits: 'Credits',
   footerCopyright: '© 2026 TypeFlow',
 
   switchLight: 'Switch to Light',

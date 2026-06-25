@@ -1,6 +1,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
-import { Keyboard } from 'lucide-react';
+import { Keyboard, Heart } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useI18n();
@@ -39,19 +39,23 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Legal */}
+          {/* Credits */}
           <div>
-            <h4 className="text-xs font-semibold text-slate-800 dark:text-white mb-3">{t.footerLegal}</h4>
-            <div className="space-y-2">
-              <a href="#" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">{t.footerPrivacy}</a>
-              <a href="#" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">{t.footerTerms}</a>
+            <h4 className="text-xs font-semibold text-slate-800 dark:text-white mb-3">{t.footerCredits}</h4>
+            <div className="space-y-2 text-xs text-slate-400 dark:text-slate-500 leading-relaxed">
+              <p>特别鸣谢 崔尧枫 (Felix)</p>
+              <p>技术支持 崔佳辉 (Kevin)</p>
             </div>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="flex items-center justify-center pt-6 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex flex-col items-center justify-center pt-6 border-t border-slate-100 dark:border-slate-800 gap-1">
           <span className="text-xs text-slate-400 dark:text-slate-500">{t.footerCopyright}</span>
+          <span className="text-xs text-slate-300 dark:text-slate-600 flex items-center gap-1">
+            <Heart className="w-3 h-3" />
+            Made with love
+          </span>
         </div>
       </div>
     </footer>
