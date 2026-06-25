@@ -47,12 +47,14 @@
 
         function getBrowserLang() {
           const lang = navigator.language || '';
+          console.log('[TypeFlow] navigator.language:', lang);
           if (lang.startsWith('zh-TW') || lang.startsWith('zh-HK')) return 'zh-TW';
           if (lang.startsWith('zh')) return 'zh-CN';
           return 'en';
         }
 
         function setTitle(lang) {
+          console.log('[TypeFlow] title lang:', lang);
           if (titles[lang]) document.title = titles[lang];
         }
 
@@ -62,14 +64,16 @@
           if (raw) {
             const data = JSON.parse(raw);
             const lang = data?.state?.settings?.language;
+            console.log('[TypeFlow] from app store:', lang);
             if (lang && titles[lang]) return setTitle(lang);
           }
           // 2. 读取 landing 自己的存储
           const lang = localStorage.getItem('landing-lang');
+          console.log('[TypeFlow] from landing store:', lang);
           if (lang && titles[lang]) return setTitle(lang);
           // 3. 根据浏览器环境自动判断
           setTitle(getBrowserLang());
-        } catch(e) { /* ignore */ }
+        } catch(e) { console.error('[TypeFlow]', e); }
       })();
     </script>
   </body>
