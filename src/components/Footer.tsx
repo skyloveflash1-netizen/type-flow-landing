@@ -1,6 +1,6 @@
 import React from 'react';
 import { useI18n } from '../i18n/I18nContext';
-import { Keyboard, Github } from 'lucide-react';
+import { Keyboard } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useI18n();
@@ -26,7 +26,6 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-slate-800 dark:text-white mb-3">{t.footerResources}</h4>
             <div className="space-y-2">
-              <a href="#" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">GitHub</a>
               <a href="#features" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">{t.navFeatures}</a>
               <a href="#download" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">{t.navDownload}</a>
             </div>
@@ -36,8 +35,7 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-slate-800 dark:text-white mb-3">{t.footerConnect}</h4>
             <div className="space-y-2">
-              <a href="#" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">GitHub Issues</a>
-              <a href="mailto:feedback@typeflow.app" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">Email</a>
+              <a href="mailto:skyloveflash@163.com" className="block text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors">Email</a>
             </div>
           </div>
 
@@ -52,12 +50,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-center pt-6 border-t border-slate-100 dark:border-slate-800">
           <span className="text-xs text-slate-400 dark:text-slate-500">{t.footerCopyright}</span>
-          <a href="#" className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors mt-2 sm:mt-0">
-            <Github className="w-3.5 h-3.5" />
-            View on GitHub
-          </a>
         </div>
       </div>
     </footer>
