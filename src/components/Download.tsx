@@ -4,11 +4,22 @@ import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon,
 
 const GITHUB_BASE = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
 const PROXY_PREFIX = 'https://ghproxy.com/';
-const BASE_URL = `${PROXY_PREFIX}${GITHUB_BASE}`;
 
-const linuxAppImageUrl = `${BASE_URL}/TypeFlow_1.0.0_amd64.AppImage`;
-const linuxDebUrl = `${BASE_URL}/TypeFlow_1.0.0_amd64.deb`;
-const linuxInstallCmd = `wget ${BASE_URL}/TypeFlow_1.0.0_amd64.deb && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f`;
+function isChinaUser(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  const lang = navigator.language || '';
+  // 中文用户大概率在国内，用代理；否则直连
+  return lang.startsWith('zh');
+}
+
+function getDownloadUrl(filename: string): string {
+  const base = isChinaUser() ? `${PROXY_PREFIX}${GITHUB_BASE}` : GITHUB_BASE;
+  return `${base}/${filename}`;
+}
+
+const linuxAppImageUrl = getDownloadUrl('TypeFlow_1.0.0_amd64.AppImage');
+const linuxDebUrl = getDownloadUrl('TypeFlow_1.0.0_amd64.deb');
+const linuxInstallCmd = `wget ${getDownloadUrl('TypeFlow_1.0.0_amd64.deb')} && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f`;
 
 export default function Download() {
   const { t } = useI18n();
@@ -31,10 +42,10 @@ export default function Download() {
   };
 
   const platforms = [
-    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${BASE_URL}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
-    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${BASE_URL}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
+    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: getDownloadUrl('typeflow.zip'), size: '2.46 MB', isSpecial: false },
+    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: getDownloadUrl('TypeFlow_1.0.0_aarch64.dmg'), size: '2.82 MB', isSpecial: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: ' ', isSpecial: true },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${BASE_URL}/TypeFlow_1.0.0_android-pad.apk`, size: '35.8 MB', isSpecial: false },
+    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: getDownloadUrl('TypeFlow_1.0.0_android-pad.apk'), size: '35.8 MB', isSpecial: false },
     { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
