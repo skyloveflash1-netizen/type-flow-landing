@@ -97,6 +97,8 @@ export interface LandingDict {
   linuxCopyBtn: string;
   linuxCopied: string;
   downloadKeyboardNote: string;
+  downloadProxyTip: string;
+  downloadProxyLink: string;
 
   // Footer
   footerTagline: string;
@@ -207,6 +209,8 @@ const zhCN: LandingDict = {
   linuxInstallTip: 'AppImage 适用于所有 Linux 发行版。deb 包适用于 Ubuntu 22.04+、Debian 12+、Linux Mint 21+ 等（x86_64）',
   linuxInstallCmd: '一键安装命令',
   downloadKeyboardNote: '所有平台均需外接真实键盘使用',
+  downloadProxyTip: '如无法下载，请通过',
+  downloadProxyLink: 'GitHub 代理',
 
   footerTagline: '让打字练习变得简单而高效',
   footerResources: '资源',
@@ -311,6 +315,8 @@ const zhTW: LandingDict = {
   linuxInstallTip: 'AppImage 適用於所有 Linux 發行版。deb 包適用於 Ubuntu 22.04+、Debian 12+、Linux Mint 21+ 等（x86_64）',
   linuxInstallCmd: '一鍵安裝命令',
   downloadKeyboardNote: '所有平台均需外接真實鍵盤使用',
+  downloadProxyTip: '如無法下載，請通過',
+  downloadProxyLink: 'GitHub 代理',
 
   footerTagline: '讓打字練習變得簡單而高效',
   footerResources: '資源',
@@ -417,6 +423,8 @@ const en: LandingDict = {
   linuxInstallTip: 'AppImage works on all Linux distros. deb for Ubuntu 22.04+, Debian 12+, Linux Mint 21+, etc. (x86_64)',
   linuxInstallCmd: 'Install command',
   downloadKeyboardNote: 'A physical keyboard is required on all platforms',
+  downloadProxyTip: 'Can\'t download? Try',
+  downloadProxyLink: 'GitHub Proxy',
 
   footerTagline: 'Making typing practice simple and efficient',
   footerResources: 'Resources',

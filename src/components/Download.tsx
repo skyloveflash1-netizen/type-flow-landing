@@ -1,25 +1,13 @@
 import React, { useState } from 'react';
 import { useI18n } from '../i18n/I18nContext';
-import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X } from 'lucide-react';
+import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X, AlertCircle } from 'lucide-react';
 
 const GITHUB_BASE = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
 const PROXY_PREFIX = 'https://ghproxy.com/';
 
-function isChinaUser(): boolean {
-  if (typeof navigator === 'undefined') return false;
-  const lang = navigator.language || '';
-  // 中文用户大概率在国内，用代理；否则直连
-  return lang.startsWith('zh');
-}
-
-function getDownloadUrl(filename: string): string {
-  const base = isChinaUser() ? `${PROXY_PREFIX}${GITHUB_BASE}` : GITHUB_BASE;
-  return `${base}/${filename}`;
-}
-
-const linuxAppImageUrl = getDownloadUrl('TypeFlow_1.0.0_amd64.AppImage');
-const linuxDebUrl = getDownloadUrl('TypeFlow_1.0.0_amd64.deb');
-const linuxInstallCmd = `wget ${getDownloadUrl('TypeFlow_1.0.0_amd64.deb')} && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f`;
+const linuxAppImageUrl = `${GITHUB_BASE}/TypeFlow_1.0.0_amd64.AppImage`;
+const linuxDebUrl = `${GITHUB_BASE}/TypeFlow_1.0.0_amd64.deb`;
+const linuxInstallCmd = `wget ${GITHUB_BASE}/TypeFlow_1.0.0_amd64.deb && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f`;
 
 export default function Download() {
   const { t } = useI18n();
@@ -42,10 +30,10 @@ export default function Download() {
   };
 
   const platforms = [
-    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: getDownloadUrl('typeflow.zip'), size: '2.46 MB', isSpecial: false },
-    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: getDownloadUrl('TypeFlow_1.0.0_aarch64.dmg'), size: '2.82 MB', isSpecial: false },
+    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${GITHUB_BASE}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
+    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${GITHUB_BASE}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: ' ', isSpecial: true },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: getDownloadUrl('TypeFlow_1.0.0_android-pad.apk'), size: '35.8 MB', isSpecial: false },
+    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android-pad.apk`, size: '35.8 MB', isSpecial: false },
     { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
@@ -110,6 +98,25 @@ export default function Download() {
         <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">
           {t.downloadNote} · {t.downloadPlatformNote}
         </p>
+
+        {/* 备用下载提示 */}
+        <div className="flex justify-center mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/40 rounded-xl">
+            <AlertCircle className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-xs text-slate-400 dark:text-slate-500">
+              {t.downloadProxyTip}{' '}
+              <a
+                href="https://ghproxy.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-500 hover:text-brand-600 underline underline-offset-2"
+              >
+                {t.downloadProxyLink}
+              </a>
+            </span>
+          </div>
+        </div>
+
         <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl">
           <span className="text-base">⚠️</span>
           <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">{t.downloadKeyboardNote}</span>
