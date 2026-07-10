@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useI18n } from '../i18n/I18nContext';
 import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X } from 'lucide-react';
 
-const BASE_URL = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
+const GITHUB_BASE = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
+const PROXY_PREFIX = 'https://ghproxy.com/';
+const BASE_URL = `${PROXY_PREFIX}${GITHUB_BASE}`;
 
 const linuxAppImageUrl = `${BASE_URL}/TypeFlow_1.0.0_amd64.AppImage`;
 const linuxDebUrl = `${BASE_URL}/TypeFlow_1.0.0_amd64.deb`;
