@@ -13,8 +13,12 @@ const linuxInstallCmd = `wget ${GITHUB_BASE}/TypeFlow_1.0.0_amd64.deb && sudo dp
 
 export default function Download() {
   const { t } = useI18n();
-  const [linuxOpen, setLinuxOpen] = useState(false);
+  const [linuxOpen, setLinuxOpen] = useState<'direct' | 'proxy' | null>(null);
   const [copied, setCopied] = useState(false);
+
+  const isProxy = linuxOpen === 'proxy';
+  const currentAppImageUrl = isProxy ? linuxAppImageProxyUrl : linuxAppImageUrl;
+  const currentDebUrl = isProxy ? linuxDebProxyUrl : linuxDebUrl;
 
   const handleCopy = async () => {
     try {
@@ -70,13 +74,22 @@ export default function Download() {
                 <span className="text-[10px] text-slate-400 dark:text-slate-500 mb-3">&nbsp;{p.size}&nbsp;</span>
                 {p.available ? (
                   p.isSpecial ? (
-                    <button
-                      onClick={() => setLinuxOpen(true)}
-                      className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
-                    >
-                      <DownloadIcon className="w-3.5 h-3.5" />
-                      {t.downloadBtn}
-                    </button>
+                    <div className="flex flex-col gap-2 w-full">
+                      <button
+                        onClick={() => setLinuxOpen('direct')}
+                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
+                      >
+                        <DownloadIcon className="w-3.5 h-3.5" />
+                        {t.downloadBtn}
+                      </button>
+                      <button
+                        onClick={() => setLinuxOpen('proxy')}
+                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-500 dark:text-slate-300 text-[11px] font-medium rounded-xl transition-all"
+                      >
+                        <DownloadIcon className="w-3 h-3" />
+                        {t.downloadProxy}
+                      </button>
+                    </div>
                   ) : (
                     <div className="flex flex-col gap-2 w-full">
                       <a
@@ -117,16 +130,18 @@ export default function Download() {
         {/* Linux Popover */}
         {linuxOpen && (
           <>
-            <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" onClick={() => setLinuxOpen(false)} />
+            <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" onClick={() => setLinuxOpen(null)} />
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
               <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200/60 dark:border-slate-700/40 w-full max-w-sm overflow-hidden">
                 <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-700/50">
                   <div className="flex items-center gap-2.5">
                     <Terminal className="w-5 h-5 text-orange-500" />
-                    <span className="font-semibold text-slate-800 dark:text-white text-sm">Linux</span>
+                    <span className="font-semibold text-slate-800 dark:text-white text-sm">
+                      Linux{isProxy ? ` · ${t.downloadProxy}` : ''}
+                    </span>
                   </div>
                   <button
-                    onClick={() => setLinuxOpen(false)}
+                    onClick={() => setLinuxOpen(null)}
                     className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                   >
                     <X className="w-4 h-4" />
@@ -139,31 +154,23 @@ export default function Download() {
                   </p>
 
                   {/* AppImage */}
-                  <div className="space-y-2">
-                    <a
-                      href={linuxAppImageUrl}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-brand-50 dark:bg-brand-500/10 hover:bg-brand-100 dark:hover:bg-brand-500/20 border border-brand-200 dark:border-brand-500/20 transition-all group"
-                    >
-                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center">
-                        <DownloadIcon className="w-4 h-4 text-brand-500" />
+                  <a
+                    href={currentAppImageUrl}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-brand-50 dark:bg-brand-500/10 hover:bg-brand-100 dark:hover:bg-brand-500/20 border border-brand-200 dark:border-brand-500/20 transition-all group"
+                  >
+                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center">
+                      <DownloadIcon className="w-4 h-4 text-brand-500" />
+                    </div>
+                    <div className="text-left flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                          AppImage（推荐）
+                        </span>
+                        <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-400 rounded">77.8 MB</span>
                       </div>
-                      <div className="text-left flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                            AppImage（推荐）
-                          </span>
-                          <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-400 rounded">77.8 MB</span>
-                        </div>
-                        <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">所有发行版通用，双击即用</div>
-                      </div>
-                    </a>
-                    <a
-                      href={linuxAppImageProxyUrl}
-                      className="block text-center text-[11px] text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors"
-                    >
-                      {t.downloadProxy}
-                    </a>
-                  </div>
+                      <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">所有发行版通用，双击即用</div>
+                    </div>
+                  </a>
 
                   <div className="flex items-center gap-3">
                     <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700/50" />
@@ -172,31 +179,23 @@ export default function Download() {
                   </div>
 
                   {/* deb */}
-                  <div className="space-y-2">
-                    <a
-                      href={linuxDebUrl}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 hover:bg-orange-50 dark:hover:bg-orange-500/10 border border-slate-100 dark:border-slate-700/30 hover:border-orange-200 dark:hover:border-orange-500/20 transition-all group"
-                    >
-                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center">
-                        <DownloadIcon className="w-4 h-4 text-orange-500" />
+                  <a
+                    href={currentDebUrl}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 hover:bg-orange-50 dark:hover:bg-orange-500/10 border border-slate-100 dark:border-slate-700/30 hover:border-orange-200 dark:hover:border-orange-500/20 transition-all group"
+                  >
+                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center">
+                      <DownloadIcon className="w-4 h-4 text-orange-500" />
+                    </div>
+                    <div className="text-left flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                          .deb 安装包
+                        </span>
+                        <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-400 rounded">2.88 MB</span>
                       </div>
-                      <div className="text-left flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                            .deb 安装包
-                          </span>
-                          <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 dark:bg-slate-600 text-slate-500 dark:text-slate-400 rounded">2.88 MB</span>
-                        </div>
-                        <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Debian/Ubuntu 系</div>
-                      </div>
-                    </a>
-                    <a
-                      href={linuxDebProxyUrl}
-                      className="block text-center text-[11px] text-slate-400 dark:text-slate-500 hover:text-brand-500 transition-colors"
-                    >
-                      {t.downloadProxy}
-                    </a>
-                  </div>
+                      <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Debian/Ubuntu 系</div>
+                    </div>
+                  </a>
 
                   <div className="flex items-center gap-3">
                     <div className="flex-1 h-px bg-slate-100 dark:bg-slate-700/50" />
