@@ -28,10 +28,12 @@ export default function Download() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const platforms = [
+  const desktopPlatforms = [
     { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${GITHUB_BASE}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
     { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${GITHUB_BASE}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: ' ', isSpecial: true },
+  ];
+  const mobilePlatforms = [
     { icon: Smartphone, label: 'Android', id: 'android', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android.apk`, size: '31.7 MB', isSpecial: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
   ];
@@ -46,9 +48,9 @@ export default function Download() {
           {t.downloadDesc}
         </p>
 
-        {/* Platform cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-          {platforms.map((p) => (
+        {/* Desktop platforms */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
+          {desktopPlatforms.map((p) => (
             <div
               key={p.id}
               className={`rounded-2xl border transition-all duration-300 ${
@@ -81,6 +83,49 @@ export default function Download() {
                       {t.downloadBtn}
                     </a>
                   )
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 text-xs rounded-xl">
+                    <Clock className="w-3.5 h-3.5" />
+                    {t.downloadComingSoon}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
+          <span className="text-xs text-slate-400 dark:text-slate-500">移动端</span>
+          <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
+        </div>
+
+        {/* Mobile platforms */}
+        <div className="grid grid-cols-2 gap-4 mb-8 max-w-xs mx-auto">
+          {mobilePlatforms.map((p) => (
+            <div
+              key={p.id}
+              className={`rounded-2xl border transition-all duration-300 ${
+                p.available
+                  ? 'bg-white dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/40 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-brand-500/5'
+                  : 'bg-slate-50 dark:bg-slate-800/30 border-slate-100 dark:border-slate-700/30 opacity-60'
+              }`}
+            >
+              <div className="p-5 flex flex-col items-center text-center">
+                <p.icon className={`w-8 h-8 mb-3 ${p.color}`} />
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">
+                  {p.label}
+                </span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 mb-3">&nbsp;{p.size}&nbsp;</span>
+                {p.available ? (
+                  <a
+                    href={p.url}
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
+                  >
+                    <DownloadIcon className="w-3.5 h-3.5" />
+                    {t.downloadBtn}
+                  </a>
                 ) : (
                   <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 text-xs rounded-xl">
                     <Clock className="w-3.5 h-3.5" />
