@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useI18n } from '../i18n/I18nContext';
-import { Monitor, Apple, Terminal, Tablet, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X } from 'lucide-react';
+import { Monitor, Apple, Terminal, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X } from 'lucide-react';
 
 const GITHUB_BASE = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
 const PROXY_BASE = `https://ghproxy.com/${GITHUB_BASE}`;
@@ -40,7 +40,6 @@ export default function Download() {
     { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${GITHUB_BASE}/TypeFlow_1.0.0_aarch64.dmg`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', proxyUrl: '', size: ' ', isSpecial: true },
     { icon: Smartphone, label: 'Android', id: 'android', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android.apk`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_android.apk`, size: '31.7 MB', isSpecial: false },
-    { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', proxyUrl: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', proxyUrl: '', size: '', isSpecial: false },
   ];
 
