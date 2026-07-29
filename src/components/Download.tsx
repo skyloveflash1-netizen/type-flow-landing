@@ -3,22 +3,15 @@ import { useI18n } from '../i18n/I18nContext';
 import { Monitor, Apple, Terminal, Smartphone, Download as DownloadIcon, Clock, Copy, Check, X } from 'lucide-react';
 
 const GITHUB_BASE = 'https://github.com/skyloveflash1-netizen/type-flow-landing/releases/download/v1.0.0';
-const PROXY_BASE = `https://ghproxy.com/${GITHUB_BASE}`;
 
 const linuxAppImageUrl = `${GITHUB_BASE}/TypeFlow_1.0.0_amd64.AppImage`;
-const linuxAppImageProxyUrl = `${PROXY_BASE}/TypeFlow_1.0.0_amd64.AppImage`;
 const linuxDebUrl = `${GITHUB_BASE}/TypeFlow_1.0.0_amd64.deb`;
-const linuxDebProxyUrl = `${PROXY_BASE}/TypeFlow_1.0.0_amd64.deb`;
 const linuxInstallCmd = `wget ${GITHUB_BASE}/TypeFlow_1.0.0_amd64.deb && sudo dpkg -i TypeFlow_1.0.0_amd64.deb && sudo apt-get install -f`;
 
 export default function Download() {
   const { t } = useI18n();
-  const [linuxOpen, setLinuxOpen] = useState<'direct' | 'proxy' | null>(null);
+  const [linuxOpen, setLinuxOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  const isProxy = linuxOpen === 'proxy';
-  const currentAppImageUrl = isProxy ? linuxAppImageProxyUrl : linuxAppImageUrl;
-  const currentDebUrl = isProxy ? linuxDebProxyUrl : linuxDebUrl;
 
   const handleCopy = async () => {
     try {
@@ -36,11 +29,11 @@ export default function Download() {
   };
 
   const platforms = [
-    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${GITHUB_BASE}/typeflow.zip`, proxyUrl: `${PROXY_BASE}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
-    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${GITHUB_BASE}/TypeFlow_1.0.0_aarch64.dmg`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
-    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', proxyUrl: '', size: ' ', isSpecial: true },
-    { icon: Smartphone, label: 'Android', id: 'android', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android.apk`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_android.apk`, size: '31.7 MB', isSpecial: false },
-    { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', proxyUrl: '', size: '', isSpecial: false },
+    { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${GITHUB_BASE}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
+    { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${GITHUB_BASE}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
+    { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', size: ' ', isSpecial: true },
+    { icon: Smartphone, label: 'Android', id: 'android', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android.apk`, size: '31.7 MB', isSpecial: false },
+    { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', size: '', isSpecial: false },
   ];
 
   return (
@@ -72,39 +65,21 @@ export default function Download() {
                 <span className="text-[10px] text-slate-400 dark:text-slate-500 mb-3">&nbsp;{p.size}&nbsp;</span>
                 {p.available ? (
                   p.isSpecial ? (
-                    <div className="flex flex-col gap-2 w-full">
-                      <button
-                        onClick={() => setLinuxOpen('direct')}
-                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
-                      >
-                        <DownloadIcon className="w-3.5 h-3.5" />
-                        {t.downloadBtn}
-                      </button>
-                      <button
-                        onClick={() => setLinuxOpen('proxy')}
-                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-500 dark:text-slate-300 text-[11px] font-medium rounded-xl transition-all"
-                      >
-                        <DownloadIcon className="w-3 h-3" />
-                        {t.downloadProxy}
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => setLinuxOpen(true)}
+                      className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
+                    >
+                      <DownloadIcon className="w-3.5 h-3.5" />
+                      {t.downloadBtn}
+                    </button>
                   ) : (
-                    <div className="flex flex-col gap-2 w-full">
-                      <a
-                        href={p.url}
-                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
-                      >
-                        <DownloadIcon className="w-3.5 h-3.5" />
-                        {t.downloadBtn}
-                      </a>
-                      <a
-                        href={p.proxyUrl}
-                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-500 dark:text-slate-300 text-[11px] font-medium rounded-xl transition-all"
-                      >
-                        <DownloadIcon className="w-3 h-3" />
-                        {t.downloadProxy}
-                      </a>
-                    </div>
+                    <a
+                      href={p.url}
+                      className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/25"
+                    >
+                      <DownloadIcon className="w-3.5 h-3.5" />
+                      {t.downloadBtn}
+                    </a>
                   )
                 ) : (
                   <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 text-xs rounded-xl">
@@ -128,18 +103,16 @@ export default function Download() {
         {/* Linux Popover */}
         {linuxOpen && (
           <>
-            <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" onClick={() => setLinuxOpen(null)} />
+            <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm" onClick={() => setLinuxOpen(false)} />
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
               <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200/60 dark:border-slate-700/40 w-full max-w-sm overflow-hidden">
                 <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-700/50">
                   <div className="flex items-center gap-2.5">
                     <Terminal className="w-5 h-5 text-orange-500" />
-                    <span className="font-semibold text-slate-800 dark:text-white text-sm">
-                      Linux{isProxy ? ` · ${t.downloadProxy}` : ''}
-                    </span>
+                    <span className="font-semibold text-slate-800 dark:text-white text-sm">Linux</span>
                   </div>
                   <button
-                    onClick={() => setLinuxOpen(null)}
+                    onClick={() => setLinuxOpen(false)}
                     className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                   >
                     <X className="w-4 h-4" />
@@ -153,7 +126,7 @@ export default function Download() {
 
                   {/* AppImage */}
                   <a
-                    href={currentAppImageUrl}
+                    href={linuxAppImageUrl}
                     className="flex items-center gap-3 p-3 rounded-xl bg-brand-50 dark:bg-brand-500/10 hover:bg-brand-100 dark:hover:bg-brand-500/20 border border-brand-200 dark:border-brand-500/20 transition-all group"
                   >
                     <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center">
@@ -178,7 +151,7 @@ export default function Download() {
 
                   {/* deb */}
                   <a
-                    href={currentDebUrl}
+                    href={linuxDebUrl}
                     className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 hover:bg-orange-50 dark:hover:bg-orange-500/10 border border-slate-100 dark:border-slate-700/30 hover:border-orange-200 dark:hover:border-orange-500/20 transition-all group"
                   >
                     <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center">
