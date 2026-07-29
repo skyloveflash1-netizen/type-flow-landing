@@ -39,9 +39,8 @@ export default function Download() {
     { icon: Monitor, label: 'Windows', id: 'windows', available: true, color: 'text-blue-500', url: `${GITHUB_BASE}/typeflow.zip`, proxyUrl: `${PROXY_BASE}/typeflow.zip`, size: '2.46 MB', isSpecial: false },
     { icon: Apple, label: 'macOS', id: 'mac', available: true, color: 'text-slate-600 dark:text-slate-300', url: `${GITHUB_BASE}/TypeFlow_1.0.0_aarch64.dmg`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_aarch64.dmg`, size: '2.82 MB', isSpecial: false },
     { icon: Terminal, label: 'Linux', id: 'linux', available: true, color: 'text-orange-500', url: '', proxyUrl: '', size: ' ', isSpecial: true },
-    { icon: Tablet, label: 'Android Pad', id: 'android-pad', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android-pad.apk`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_android-pad.apk`, size: '35.8 MB', isSpecial: false },
+    { icon: Smartphone, label: 'Android', id: 'android', available: true, color: 'text-emerald-500', url: `${GITHUB_BASE}/TypeFlow_1.0.0_android.apk`, proxyUrl: `${PROXY_BASE}/TypeFlow_1.0.0_android.apk`, size: '31.7 MB', isSpecial: false },
     { icon: Tablet, label: 'iPad', id: 'ipad', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', proxyUrl: '', size: '', isSpecial: false },
-    { icon: Smartphone, label: 'Android', id: 'android', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', proxyUrl: '', size: '', isSpecial: false },
     { icon: Smartphone, label: 'iOS', id: 'ios', available: false, color: 'text-slate-600 dark:text-slate-300', url: '', proxyUrl: '', size: '', isSpecial: false },
   ];
 
