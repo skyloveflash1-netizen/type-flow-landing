@@ -39,6 +39,8 @@ function writeAppLang(lang: Language) {
     if (!data.state) data.state = {};
     if (!data.state.settings) data.state.settings = {};
     data.state.settings.language = lang;
+    // 确保 version 字段存在，否则 web app 的 Zustand 可能无法正确合并
+    if (data.version === undefined) data.version = 0;
     localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(data));
   } catch { /* ignore */ }
 }
