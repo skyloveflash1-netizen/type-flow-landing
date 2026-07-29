@@ -94,13 +94,6 @@ export default function Download() {
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
-          <span className="text-xs text-slate-400 dark:text-slate-500">移动端</span>
-          <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
-        </div>
-
         {/* Mobile platforms */}
         <div className="grid grid-cols-2 gap-4 mb-8 max-w-xs mx-auto">
           {mobilePlatforms.map((p) => (
